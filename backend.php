@@ -5,6 +5,10 @@ $userPrompt = $data["prompt"] ?? "";
 
 $apiKey = getenv("GEMINI_API_KEY");
 
+if (!$apiKey) {
+    die("API KEY NO DETECTADA");
+}
+
 $url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=" . $apiKey;
 
 $promptBase = "Devuelve únicamente código HTML5 completo.
