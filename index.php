@@ -27,6 +27,10 @@ Crea una landing page moderna con navbar y sección de servicios.
 
 <hr>
 
+<div>
+    <a href="test.php">Test</a>
+</div>
+
 <iframe id="preview"></iframe>
 
 <script>
