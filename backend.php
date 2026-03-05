@@ -3,7 +3,7 @@
 $data = json_decode(file_get_contents("php://input"), true);
 $userPrompt = $data["prompt"] ?? "";
 
-$apiKey = "AIzaSyCP7bR2DFiLZgkvxESGzPLuwkkR2An55sk";
+$apiKey = getenv("GEMINI_API_KEY");
 
 $url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=" . $apiKey;
 
