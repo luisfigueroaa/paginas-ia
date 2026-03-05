@@ -1,0 +1,39 @@
+<?php
+
+$data = json_decode(file_get_contents("php://input"), true);
+$userPrompt = $data["prompt"] ?? "";
+
+$apiKey = "AIzaSyCP7bR2DFiLZgkvxESGzPLuwkkR2An55sk";
+
+$url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=" . $apiKey;
+
+$promptBase = "Devuelve únicamente código HTML5 completo.
+No agregues explicaciones.
+No uses markdown.
+No uses bloques ```html.
+" . $userPrompt;
+
+$payload = [
+    "contents" => [[
+        "parts" => [[ "text" => $promptBase ]]
+    ]]
+];
+
+$ch = curl_init($url);
+curl_setopt_array($ch, [
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_POST => true,
+    CURLOPT_HTTPHEADER => ["Content-Type: application/json"],
+    CURLOPT_POSTFIELDS => json_encode($payload),
+]);
+
+$response = curl_exec($ch);
+
+if ($response === false) {
+    echo "Error cURL: " . curl_error($ch);
+    exit;
+}
+
+$result = json_decode($response, true);
+
+echo $result["candidates"][0]["content"]["parts"][0]["text"] ?? "Error en generación.";

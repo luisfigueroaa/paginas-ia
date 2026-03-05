@@ -1,0 +1,36 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+#preview {
+    width: 90vw;
+    height: 600px;
+}
+
+#content-prompt {
+    text-align: center;
+}
+
+#content h1,
+#content h2 {
+    text-align: center;
+}
+
+#content h1 {
+    font-size: 1.5em;
+}
+
+#content h2 {
+    font-size: 0.8em;
+}
+
+#bt-generar {
+    text-align: center;
+    margin: 1em;
+}
+
+#bt-generar button{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
