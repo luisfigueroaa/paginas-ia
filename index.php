@@ -9,9 +9,12 @@
 
 <div id="content">
 
-<h1 id="title">Aetheron - Generador IA</h1>
+<div id="title">
+    <img src="logo.png" alt="logo" id="logo">
+    <h1>&nbsp;Aetheron | Generador de Webs con IA</h1>
+</div>
 
-<h2 id="subtitle">Generador Web con IA (Gemini)</h2>
+<h2 id="subtitle">Coloque o edite el siguiente prompt para generar el sitio web</h2>
 
 <div id="content-prompt">
 
@@ -23,12 +26,6 @@ Crea una landing page moderna con navbar y sección de servicios.
 
 <div id="bt-generar">
 <button onclick="generar()">Generar</button>
-</div>
-
-<hr>
-
-<div>
-    <a href="test.php">Test</a>
 </div>
 
 <iframe id="preview"></iframe>
