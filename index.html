@@ -34,6 +34,8 @@ Crea una landing page moderna con navbar y sección de servicios.
 async function generar() {
     const prompt = document.getElementById("prompt").value;
 
+    document.getElementById("preview").srcdoc = "Generando página web..."
+
     const response = await fetch("backend.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

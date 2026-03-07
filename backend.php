@@ -1,9 +1,22 @@
 <?php
 
+/* Guardar errores en un log */
+ini_set('display_errors', 0);
+ini_set('log_errors', 1);
+ini_set('error_log', __DIR__ . '/error.log');
+error_reporting(E_ALL);
+
 $data = json_decode(file_get_contents("php://input"), true);
 $userPrompt = $data["prompt"] ?? "";
 
-$apiKey = getenv("GEMINI_API_KEY");
+$apiKey = $getenv["GEMINI_API_KEY"];
+
+if (!$apiKey) {
+    if (file_exists(".env")) {
+        $env = parse_ini_file(".env");
+        $apiKey = $env["GEMINI_API_KEY"];
+    }
+}
 
 if (!$apiKey) {
     die("API KEY NO DETECTADA");
@@ -40,4 +53,18 @@ if ($response === false) {
 
 $result = json_decode($response, true);
 
-echo $result["candidates"][0]["content"]["parts"][0]["text"] ?? "Error en generación.";
+$html = $result["candidates"][0]["content"]["parts"][0]["text"] ?? "Error en generación.";
+
+/* Guardar archivo HTML*/
+
+if (!is_dir("pages")) {
+    mkdir("pages", 0777, true);
+}
+
+$nombreArchivo = "pages/pagina_" . time() . ".html";
+
+file_put_contents($nombreArchivo, $html);
+
+/* -------------------------- */
+
+echo $html;
